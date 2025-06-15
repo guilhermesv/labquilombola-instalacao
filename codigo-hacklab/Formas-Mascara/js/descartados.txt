@@ -1,0 +1,20 @@
+descartados
+
+
+  // blendMode(BLEND);
+  // background(0);
+  // formas[0](pgs[0], 16, color(0, 255, 255, 255), 0, t/2);
+  // image(pgs[0], 0, 0, width, height);
+  // // cortina_loc(-height/4, height/2, 16, 32, 0.1);
+  // // cortina_loc(height/4, height/2, 64, 16, 0.5);
+  // filtro_mascara();
+  // filter(POSTERIZE, 2);
+
+
+  blendMode(BLEND);
+  background(0);
+  formas[3](pgs[0], 25, color(255, 0, 2551, sensor_A), 0, t);
+  image(pgs[0], 0, 0, width, height);
+  filter(BLUR, 1);
+  filtro_mascara();
+  filter(POSTERIZE, 2);

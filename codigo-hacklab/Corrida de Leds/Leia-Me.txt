@@ -1,0 +1,7 @@
+CORRIDA DE LEDS COM FOLHAS USANDO MAKEY MAKEY.
+ 
+1. Conectar folhas as entradas "A", "S", "D" e "F" do Makey Makey
+2. Conectar a fita de led ao seu microcontrolador e ajustar as variáveis
+   de definição da fita
+3. Rodar o código auxiliar teclado.py para enviar os comandos para o arduino
+4. O código está rodando, apertar Q quando precisar resetar o jogo pro começo.

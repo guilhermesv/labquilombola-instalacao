@@ -1,0 +1,5 @@
+INTERAÇÃO DE FITA DE LED COM MICROFONE
+
+1. Suba o código  "Arduino_Led_Noise_2_Microfone" para seu microcontrolador
+2. Abra o código "Microfone" no Processing para iniciar captura de som
+   e envio para o arduino.
