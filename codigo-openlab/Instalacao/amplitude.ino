@@ -1,3 +1,7 @@
+// Ajustar a escala para todas as esteiras, 
+// talvez seja legal uma escala de ruido grande
+
+
 void efeito_amplitude() {
   int peakToPeak = getAmplitude(); // Calcula a amplitude do sinal
 
@@ -16,7 +20,10 @@ void efeito_amplitude() {
   // int scale = 30;
   // uint16_t t = millis() / 4;
 
-  int scale = 10;
+  // int scale = 10;
+  // uint16_t t = millis() / 10;
+
+  int scale = 1;
   uint16_t t = millis() / 10;
 
   for (int i = 0; i < NUM_LEDS; i++) {
