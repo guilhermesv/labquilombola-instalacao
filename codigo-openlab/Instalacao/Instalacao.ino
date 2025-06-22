@@ -14,8 +14,26 @@ double vReal[F_SAMPLES];
 double vImag[F_SAMPLES];
 ArduinoFFT<double> FFT = ArduinoFFT<double>(vReal, vImag, F_SAMPLES, F_SAMPLING_FREQUENCY);
 
+// CONFIGURACAO AMPLI
+int A_RUIDO_LIMITE = 1000; // Nenhum som abaixo dessa amplitude sera considerado
+int A_NOISE_LIMIAR = 150; // Valor de brilho para aparecer o noise
+#define A_SAMPLES 100 // Número de amostras para cálculo da média
+
+// CONFIGURACAO TEMP
+
+// TIMER 1
+unsigned long previousMillis_1 = 0;
+const long interval_1 = 1000; // 60.000 ms = 1 minuto
+int t_1 = 0;
+
+// TIMER 2
+unsigned long previousMillis_2 = 0;
+const long interval_2 = 10000; // 60.000 ms = 1 minuto
+int t_2 = 0;
+
+
 // CONFIG GERAL
-int t = 1000;
+int t_g = 1000;
 
 void setup() {
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
@@ -25,6 +43,8 @@ void setup() {
 }
 
 void loop() {
-  efeito_fft();
+  // efeito_fft();
+  efeito_amplitude();
   delay(50);
+  incrementa_tempo();
 }
