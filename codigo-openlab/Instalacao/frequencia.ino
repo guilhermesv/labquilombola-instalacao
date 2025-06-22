@@ -24,14 +24,16 @@ void efeito_fft() {
   FFT.complexToMagnitude(vReal, vImag, F_SAMPLES);
   
   for (int i = 0; i < NUM_LEDS; i++) {
-    int ledIndex = (i + t) % NUM_LEDS;
+    // int ledIndex = (i + t_g) % NUM_LEDS; // Com movimento nas frequencias
+    int ledIndex = i; // Sem movimento nas frequencias
+
     int freqIndex = map(i, 0, NUM_LEDS, frequencias_ignorar, F_SAMPLES / frequencias_divisor);
     double amplitude = vReal[freqIndex];
     if (amplitude > amplitude_min) {
       int brightness = map(amplitude, amplitude_min, amplitude_max, 0, 255);
       brightness = constrain(brightness, 0, 255);
       int sat = 255;
-      int hue = mod8(t, 255);
+      int hue = mod8(t_1, 255);
       hue = constrain(hue, 0, 255);
       leds[ledIndex] = CHSV(hue, sat, brightness);
     }
@@ -43,6 +45,5 @@ void efeito_fft() {
 
   // Atualiza os LEDs
   FastLED.show();
-  t++;
-  
+
 }
