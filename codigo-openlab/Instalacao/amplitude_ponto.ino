@@ -1,8 +1,6 @@
-// Ajustar a escala para todas as esteiras, 
-// talvez seja legal uma escala de ruido grande
-// Testei a amplitude controlando a saturacao, verificar
+// Fazer aqui o leds serem acesos em locais aleatórios, porém quanto maais alto o som mais ledss
 
-void efeito_amplitude() {
+void efeito_amplitude_ponto() {
   int peakToPeak = getAmplitude(); // Calcula a amplitude do sinal
 
   int sensor = peakToPeak;
@@ -17,16 +15,7 @@ void efeito_amplitude() {
     fadeToBlackBy(leds, NUM_LEDS, 20);
   }
 
-  uint16_t x = 0;
-  // int scale = 30;
-  // uint16_t t = millis() / 4;
-
-  // int scale = 10;
-  // uint16_t t = millis() / 10;
-
-  int scale = 4;
-  uint16_t t = millis() / 10;
-
+  
   for (int i = 0; i < NUM_LEDS; i++) {
     uint8_t noise = inoise8(i * scale + x + t);
     if ( noise > A_NOISE_LIMIAR) {
@@ -37,20 +26,4 @@ void efeito_amplitude() {
     }
   }
 
-}
-
-int getAmplitude() {
-  int signalMax = 0;
-  int signalMin = 4095;
-
-  for (int i = 0; i < A_SAMPLES; i++) {
-    int sample = analogRead(MIC_PIN);
-    if (sample > signalMax) {
-      signalMax = sample; 
-    }
-    if (sample < signalMin) {
-      signalMin = sample;
-    }
-  }
-  return signalMax - signalMin;
 }

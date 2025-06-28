@@ -45,6 +45,7 @@ void setup() {
 void loop() {
   // efeito_fft();
   efeito_amplitude();
+  FastLED.show();
   delay(50);
   incrementa_tempo();
 }

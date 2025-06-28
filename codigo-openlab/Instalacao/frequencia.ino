@@ -43,7 +43,4 @@ void efeito_fft() {
     fadeToBlackBy(leds, NUM_LEDS, 20);
   }
 
-  // Atualiza os LEDs
-  FastLED.show();
-
 }
