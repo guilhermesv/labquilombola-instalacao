@@ -7,8 +7,15 @@ void efeito_amplitude_ponto() {
   }
   int brilho_max = map(sensor, 0, 3000, 0, 255);
   int hue = 255-mod8(t_2 + 127, 255);
-  int sat = map(sensor, 0, 3000, 255, 0);
+  int qtd = map(sensor, 0, 3000, 0, 200);
 
+  for(int i =0; i < qtd; i++) {
+    leds[random8(NUM_LEDS)] = CHSV(hue, 255, brilho_max);
+    if(random8()>200) {
+      leds[random8(NUM_LEDS)] = CHSV(random8(127,255), 255, brilho_max);
+    }
+  }
+   
   EVERY_N_MILLISECONDS(20) {
     fadeToBlackBy(leds, NUM_LEDS, 20);
   }
