@@ -18,14 +18,11 @@ void efeito_amplitude_noise() {
   }
 
   uint16_t x = 0;
-  // int scale = 30;
-  // uint16_t t = millis() / 4;
+  int scale = 30;
+  uint16_t t = millis() / 4;
 
   // int scale = 10;
   // uint16_t t = millis() / 10;
-
-  int scale = 4;
-  uint16_t t = millis() / 10;
 
   for (int i = 0; i < NUM_LEDS; i++) {
     uint8_t noise = inoise8(i * scale + x + t);
