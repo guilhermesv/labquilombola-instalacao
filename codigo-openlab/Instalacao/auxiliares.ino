@@ -33,3 +33,25 @@ void incrementa_tempo() {
 
   t_g++;
 }
+
+void efeito_proximo() {
+  efeito_contador = (efeito_contador + 1)%3;
+  if (src_1_ativa) efeito_src_1 = efeito_contador;  // Determine which source array for new pattern
+  else efeito_src_2 = efeito_contador;
+
+  src_1_ativa = !src_1_ativa;                           // Swap source array for next time around
+}
+
+void efeito_run(uint8_t efeito, CRGB *leds) {
+  switch (efeito) {
+    case 0:
+      efeito_fft(leds);
+      break;
+    case 1:
+      efeito_amplitude_noise(leds);
+      break;
+    case 2:
+      efeito_amplitude_ponto(leds);
+      break;
+  }
+}

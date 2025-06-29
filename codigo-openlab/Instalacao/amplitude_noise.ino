@@ -2,7 +2,7 @@
 // talvez seja legal uma escala de ruido grande
 // Testei a amplitude controlando a saturacao, verificar
 
-void efeito_amplitude_noise() {
+void efeito_amplitude_noise(CRGB *leds) {
   int peakToPeak = getAmplitude(); // Calcula a amplitude do sinal
 
   int sensor = peakToPeak;
@@ -10,7 +10,7 @@ void efeito_amplitude_noise() {
     sensor = 5;      
   }
   int brilho_max = map(sensor, 0, 3000, 0, 255);
-  int hue = 255-mod8(t_2 + 127, 255);
+  int hue = mod8(t_1, 255);
   int sat = map(sensor, 0, 3000, 255, 0);
 
   EVERY_N_MILLISECONDS(20) {

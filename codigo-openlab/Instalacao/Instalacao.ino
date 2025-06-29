@@ -2,10 +2,19 @@
 #include <FastLED.h>
 
 // CONFIGURACAO ESP E FITA
-#define LED_PIN     4       // Pino onde a fita LED está conectada
-#define NUM_LEDS    192      // Número de LEDs na fita
-#define MIC_PIN     34      // Pino do microfone
-CRGB leds[NUM_LEDS];
+#define LED_PIN     4   
+#define MIC_PIN     34
+#define NUM_LEDS    192
+
+CRGB leds_src_1[NUM_LEDS];
+CRGB leds_src_2[NUM_LEDS];
+CRGB leds_out[NUM_LEDS];
+
+uint8_t blend_qtd = 0;
+uint8_t efeito_contador = 0;
+uint8_t efeito_src_1 = 0;
+uint8_t efeito_src_2 = 1;
+bool src_1_ativa = false;
 
 // CONFIGURACAO FREQ
 #define F_SAMPLES     512     // Número de amostras da FFT (deve ser uma potência de 2)
@@ -36,17 +45,34 @@ int t_2 = 0;
 int t_g = 1000;
 
 void setup() {
-  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
+  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds_out, NUM_LEDS);
   FastLED.clear();
   pinMode(MIC_PIN, INPUT);
   Serial.begin(115200);
 }
 
 void loop() {
+
+  EVERY_N_MILLISECONDS(10) {
+    blend(leds_src_1, leds_src_2, leds_out, NUM_LEDS, blend_qtd);    // Blend between the two sources
+    if (src_1_ativa) {
+      if (blend_qtd < 255) blend_qtd++;                          // Blend 'up' to source 2
+    } else {
+      if (blend_qtd > 0) blend_qtd--;                            // Blend 'down' to source 1
+    }
+  }
+
+  EVERY_N_SECONDS(5) {
+    efeito_proximo();
+  }
+
+  efeito_run(efeito_src_1, leds_src_1);                  // Run both patterns simultaneously
+  efeito_run(efeito_src_2, leds_src_2);
+
   // efeito_fft();
   // efeito_amplitude_noise();
-  efeito_amplitude_ponto();
+  // efeito_amplitude_ponto();
   FastLED.show();
-  delay(50);
   incrementa_tempo();
+  delay(50);
 }

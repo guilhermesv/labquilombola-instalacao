@@ -3,7 +3,7 @@
 // TAMBEM SERIA LEGAL QUE A FREQ ADICIONASSE COR, 
 // ASSIM, ELA NAO APAGA PEDACOS
 
-void efeito_fft() {
+void efeito_fft(CRGB *leds) {
 
   int frequencias_ignorar = 10;
   int frequencias_divisor = 8; // Minimo 2, para ignorar valores negativos
