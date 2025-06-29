@@ -1,4 +1,4 @@
-void efeito_amplitude_ponto() {
+void efeito_amplitude_ponto(CRGB *leds) {
   int peakToPeak = getAmplitude(); // Calcula a amplitude do sinal
 
   int sensor = peakToPeak;
@@ -6,7 +6,7 @@ void efeito_amplitude_ponto() {
     sensor = 5;      
   }
   int brilho_max = map(sensor, 0, 3000, 0, 255);
-  int hue = 255-mod8(t_2 + 127, 255);
+  int hue = mod8(t_1, 255);
   int qtd = map(sensor, 0, 3000, 0, 200);
 
   for(int i =0; i < qtd; i++) {
