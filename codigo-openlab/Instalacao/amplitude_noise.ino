@@ -2,7 +2,7 @@
 // talvez seja legal uma escala de ruido grande
 // Testei a amplitude controlando a saturacao, verificar
 
-void efeito_amplitude() {
+void efeito_amplitude_noise() {
   int peakToPeak = getAmplitude(); // Calcula a amplitude do sinal
 
   int sensor = peakToPeak;
@@ -36,21 +36,4 @@ void efeito_amplitude() {
       // leds[i] = CHSV(hue, 255, qsub8(brilho_max, noise));
     }
   }
-
-}
-
-int getAmplitude() {
-  int signalMax = 0;
-  int signalMin = 4095;
-
-  for (int i = 0; i < A_SAMPLES; i++) {
-    int sample = analogRead(MIC_PIN);
-    if (sample > signalMax) {
-      signalMax = sample; 
-    }
-    if (sample < signalMin) {
-      signalMin = sample;
-    }
-  }
-  return signalMax - signalMin;
 }
