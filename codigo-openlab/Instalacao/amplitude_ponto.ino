@@ -12,7 +12,7 @@ void efeito_amplitude_ponto(CRGB *leds) {
   for(int i =0; i < qtd; i++) {
     leds[random8(NUM_LEDS)] = CHSV(hue, 255, brilho_max);
     if(random8()>200) {
-      leds[random8(NUM_LEDS)] = CHSV(random8(127,255), 255, brilho_max);
+      leds[random8(NUM_LEDS)] = CHSV(mod8(hue - 50, 255), 255, brilho_max);
     }
   }
    
