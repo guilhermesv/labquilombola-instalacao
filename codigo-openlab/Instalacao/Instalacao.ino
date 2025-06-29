@@ -49,10 +49,12 @@ void setup() {
   FastLED.clear();
   pinMode(MIC_PIN, INPUT);
   Serial.begin(115200);
+  // Começar em um padrão aleatório
+  efeito_contador = mod8(random8(), 3);
+  efeito_proximo();
 }
 
 void loop() {
-
   EVERY_N_MILLISECONDS(10) {
     blend(leds_src_1, leds_src_2, leds_out, NUM_LEDS, blend_qtd);    // Blend between the two sources
     if (src_1_ativa) {
