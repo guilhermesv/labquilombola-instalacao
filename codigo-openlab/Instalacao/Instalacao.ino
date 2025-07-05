@@ -4,7 +4,7 @@
 // CONFIGURACAO ESP E FITA
 #define LED_PIN     4   
 #define MIC_PIN     34
-#define NUM_LEDS    192
+#define NUM_LEDS    1200 //192
 
 CRGB leds_src_1[NUM_LEDS];
 CRGB leds_src_2[NUM_LEDS];
@@ -71,9 +71,6 @@ void loop() {
   efeito_run(efeito_src_1, leds_src_1);                  // Run both patterns simultaneously
   efeito_run(efeito_src_2, leds_src_2);
 
-  // efeito_fft();
-  // efeito_amplitude_noise();
-  // efeito_amplitude_ponto();
   FastLED.show();
   incrementa_tempo();
   delay(50);
