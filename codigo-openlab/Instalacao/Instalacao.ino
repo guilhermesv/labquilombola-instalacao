@@ -55,21 +55,27 @@ void setup() {
 }
 
 void loop() {
-  EVERY_N_MILLISECONDS(10) {
-    blend(leds_src_1, leds_src_2, leds_out, NUM_LEDS, blend_qtd);    // Blend between the two sources
-    if (src_1_ativa) {
-      if (blend_qtd < 255) blend_qtd++;                          // Blend 'up' to source 2
-    } else {
-      if (blend_qtd > 0) blend_qtd--;                            // Blend 'down' to source 1
-    }
-  }
 
-  EVERY_N_SECONDS(5) {
-    efeito_proximo();
-  }
+  // Rodando padroes em loop
 
-  efeito_run(efeito_src_1, leds_src_1);                  // Run both patterns simultaneously
-  efeito_run(efeito_src_2, leds_src_2);
+  // EVERY_N_MILLISECONDS(10) {
+  //   blend(leds_src_1, leds_src_2, leds_out, NUM_LEDS, blend_qtd);    // Blend between the two sources
+  //   if (src_1_ativa) {
+  //     if (blend_qtd < 255) blend_qtd++;                          // Blend 'up' to source 2
+  //   } else {
+  //     if (blend_qtd > 0) blend_qtd--;                            // Blend 'down' to source 1
+  //   }
+  // }
+
+  // EVERY_N_SECONDS(5) {
+  //   efeito_proximo();
+  // }
+
+  // efeito_run(efeito_src_1, leds_src_1);                  // Run both patterns simultaneously
+  // efeito_run(efeito_src_2, leds_src_2);
+
+  // Rodando padrão únicos
+  efeito_run(1, leds_out);
 
   FastLED.show();
   incrementa_tempo();
